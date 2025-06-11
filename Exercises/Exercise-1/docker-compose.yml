@@ -4,9 +4,9 @@ services:
     image: "exercise-1"
     volumes:
       - .:/app
-    command: python3 -m pytest
+    command: python -m pytest
   run:
     image: "exercise-1"
     volumes:
       - .:/app
-    command: python3 main.py
+    command: python main.py
