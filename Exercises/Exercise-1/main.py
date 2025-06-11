@@ -67,8 +67,42 @@ def extract_zip_file(zip_path):
         return None
 
 def main():
-    """"""
+    """Main function to orchestrate the download process."""
+    print("Starting file download process...")
+
+    # Step 1: Create downloads directory
     downloads_dir = create_dowloads_directory()
+    print(f"✓ Created/verified download directory: {downloads_dir}")
+    
+    successful_downloads = 0
+    failed_downloads = 0
+
+    # Step 2-4: Download files one by one and extract
+    for uri in download_uris:
+        print(f"\nProcessing: {uri}")
+
+        # Download the file
+        zip_path = download_file(uri, downloads_dir)
+
+        if zip_path and zip_path.exists():
+            extracted_files = extract_zip_file(zip_path)
+
+            if extracted_files:
+                successful_downloads += 1
+                print(f" Extracted files: {extracted_files}")
+            else:
+                failed_downloads += 1
+        else:
+            failed_downloads += 1
+
+    # Summary
+    print(f"\n{'='*50}")
+    print(f"Download Summary")
+    print(f"Successful: {successful_downloads}")
+    print(f"Failed: {failed_downloads}")
+    print(f"Total: {len(download_uris)}")
+    print(f"{'='*50}")
+
     uri = "https://divvy-tripdata.s3.amazonaws.com/Divvy_Trips_2018_Q4.zip"
 
     # a = extract_filename_from_uri(uri)
