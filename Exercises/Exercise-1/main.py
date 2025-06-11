@@ -105,7 +105,6 @@ def main():
 
     uri = "https://divvy-tripdata.s3.amazonaws.com/Divvy_Trips_2018_Q4.zip"
 
-    # a = extract_filename_from_uri(uri)
     download_file(uri, downloads_dir)
     pass
 
